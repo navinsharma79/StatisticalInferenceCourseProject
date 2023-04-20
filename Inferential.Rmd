@@ -48,33 +48,54 @@ We will test two main hypotheses
 
 ## Analyses
 ### 0.5 vs 1.0 mg/day of Vitamin C
+We ran an unpaired t-test comparing 0.5 and 1.0 mg/day. The average growth for 0.5 mg/day is 10.6 and the average growth for 1.0 mg/day is 19.7. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that 1.0 mg/day is more effective than 0.5 mg/day at driving odontoblast growth.
+
+The details are in the appendix.
+
+### 1.0 vs 2.0 mg/day of Vitamin C
+We ran an unpaired t-test comparing 1.0 and 2.0 mg/day. The average growth for 1.0 mg/day is 19.7 and the average growth for 2.0 mg/day is 26.1. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that 2.0 mg/day is more effective than 1.0 mg/day at driving odontoblast growth.
+
+The details are in the appendix.
+
+### Orange Juice vs Ascorbic Acid at 0.5 mg/day
+We ran an unpaired t-test comparing orange juice and ascorbic acid at a dosage of 0.5 mg/day. The average growth for orange juice is 13.2 and the average growth for ascorbic acid is 8.0. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that orange juice is more effective than ascorbic acid at driving odontoblast growth at 0.5 mg/day.
+
+The details are in the appendix.
+
+### Orange Juice vs Ascorbic Acid at 1.0 mg/day
+We ran an unpaired t-test comparing orange juice and ascorbic acid at a dosage of 1.0 mg/day. The average growth for orange juice is 22.7 and the average growth for ascorbic acid is 16.8. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that orange juice is more effective than ascorbic acid at driving odontoblast growth at 1.0 mg/day.
+
+The details are in the appendix.
+
+### Orange Juice vs Ascorbic Acid at 2.0 mg/day
+We ran an unpaired t-test comparing orange juice and ascorbic acid at a dosage of 2.0 mg/day. The average growth for orange juice is 26.1 and the average growth for ascorbic acid is 26.1. The confidence interval of the difference does contain 0 and the p value is 0.96. This would indicate that there is no observable difference between orange juice and ascorbic acidd at driving odontoblast growth at 2.0 mg/day.
+
+The details are in the appendix.
+
+## Appendix
+
+### 0.5 vs 1.0 mg/day of Vitamin C
 ```{r}
 t.test(len ~ dose,paired=FALSE,var.equal=FALSE,data=ToothGrowth[ToothGrowth$dose!=2,])
 ```
-We ran an unpaired t-test comparing 0.5 and 1.0 mg/day. The average growth for 0.5 mg/day is 10.6 and the average growth for 1.0 mg/day is 19.7. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that 1.0 mg/day is more effective than 0.5 mg/day at driving odontoblast growth.
 
 ### 1.0 vs 2.0 mg/day of Vitamin C
 ```{r}
 t.test(len ~ dose,paired=FALSE,var.equal=FALSE,data=ToothGrowth[ToothGrowth$dose!=0.5,])
 ```
-We ran an unpaired t-test comparing 1.0 and 2.0 mg/day. The average growth for 1.0 mg/day is 19.7 and the average growth for 2.0 mg/day is 26.1. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that 2.0 mg/day is more effective than 1.0 mg/day at driving odontoblast growth.
 
 ### Orange Juice vs Ascorbic Acid at 0.5 mg/day
 ```{r}
 t.test(len ~ supp,paired=FALSE,var.equal=FALSE,data=ToothGrowth[ToothGrowth$dose==0.5,])
 ```
-We ran an unpaired t-test comparing orange juice and ascorbic acid at a dosage of 0.5 mg/day. The average growth for orange juice is 13.2 and the average growth for ascorbic acid is 8.0. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that orange juice is more effective than ascorbic acid at driving odontoblast growth at 0.5 mg/day.
 
 ### Orange Juice vs Ascorbic Acid at 1.0 mg/day
 ```{r}
 t.test(len ~ supp,paired=FALSE,var.equal=FALSE,data=ToothGrowth[ToothGrowth$dose==1.0,])
 ```
-We ran an unpaired t-test comparing orange juice and ascorbic acid at a dosage of 1.0 mg/day. The average growth for orange juice is 22.7 and the average growth for ascorbic acid is 16.8. The confidence interval of the difference does not contain 0 and the p value is much less than 0.05. This would indicate that orange juice is more effective than ascorbic acid at driving odontoblast growth at 1.0 mg/day.
 
-### Orange Juice vs Ascorbic Acid at 1.0 mg/day
+### Orange Juice vs Ascorbic Acid at 2.0 mg/day
 ```{r}
 t.test(len ~ supp,paired=FALSE,var.equal=FALSE,data=ToothGrowth[ToothGrowth$dose==2.0,])
 ```
-We ran an unpaired t-test comparing orange juice and ascorbic acid at a dosage of 2.0 mg/day. The average growth for orange juice is 26.1 and the average growth for ascorbic acid is 26.1. The confidence interval of the difference does contain 0 and the p value is 0.96. This would indicate that there is no observable difference between orange juice and ascorbic acidd at driving odontoblast growth at 2.0 mg/day.
-
 
