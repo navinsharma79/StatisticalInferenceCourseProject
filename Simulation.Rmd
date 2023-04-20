@@ -1,0 +1,54 @@
+---
+title: "Statistical Inference Course Project: an Exploration of Applying the Central Limit Theorem to a Exponential Distribution"
+author: "Navin Sharma"
+date: "2023-04-19"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+In this class project we are exploring the Central Limit Theorem. Specifically, we will simulate an exponential distribution with $\lambda$ of 0.2. We will take 40 random exponentials and calculate the mean over 1000 simulations. The sample mean and sample variance should be close to the theoretical mean and variance.
+
+## Simulations
+We will simulate the exponential distribution 1000 times for 40 random exponentials.
+```{r echo=TRUE, results=FALSE}
+lambda <- 0.2
+set.seed(42)
+mns = NULL
+for (i in 1 : 1000) mns = c(mns, mean(rexp(40,lambda)))
+```
+
+## Sample mean versus theoretical mean
+The sample mean is `r mean(mns)` compared to the theoretical mean of `r 1/lambda`. See the figure below with the R output comparing the mean across the 1000 simulations to the theoretical mean of $\frac{1}{\lambda}$.
+
+## Sample variance versus theoretical variance
+The sample variance is the population variance divided by the sample size. In this case the sample variance is `r var(mns)` compared to the theoretical sample variance of `r (1/lambda)^2/40`. See the figure below with the R output comparing the variance of the means of the 1000 simulations to the theoretical variance of $\frac{(\frac{1}{\lambda})^2}{40}$.
+
+```{r}
+knitr::kable(data.frame(c("Mean","Variance"),c(mean(mns),var(mns)),c(1/lambda,(1/lambda)^2/40)),col.names=c("Statistic","Sample","Theoretical"),caption = "Figure: Comparison of Sample and Theoretical Statistics")
+```
+
+## Distribution
+
+Per the CLT, the distribution of means should be normally distributed with a mean equal to the population mean and a variance equal to the population variance divided by the sample size.
+
+I will overlay a normal distribution with these parameters over a histogram of the sample means.
+
+```{r}
+hist_data <- hist(mns,main="Histogram of 1000 sample means",xlab="Sample Mean")
+x_values <- seq(min(mns), max(mns), length = 100)
+y_values <- dnorm(x_values, mean = 1/lambda, sd =(1/lambda)/sqrt(40)) 
+y_values <- y_values * diff(hist_data$mids[1:2]) * length(mns)
+hist_data
+lines(x_values, y_values, lwd = 4)
+```
+
+## Appendix
+
+Here is the data for the 1000 sample means we simulated
+```{r}
+mns
+```
